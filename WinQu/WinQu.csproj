@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>WinQu_64.ico</ApplicationIcon>
+    <Copyright>Flagspitter</Copyright>
+    <Authors>$(AssemblyName)</Authors>
+    <Company>Flagspitter</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="WinQu_64.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuickBoard\QuickBoard.csproj" />
+    <ProjectReference Include="..\QuickCalc\QuickCalc.csproj" />
+    <ProjectReference Include="..\QuickNote\QuickNote.csproj" />
+    <ProjectReference Include="..\QuickPeek\QuickPeek.csproj" />
+    <ProjectReference Include="..\QuickWatch\QuickWatch.csproj" />
+    <ProjectReference Include="..\QuLib\QuLib.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Debug&quot; (&#xD;&#xA;    copy &quot;$(ProjectDir)Settings_debug.ini&quot; &quot;$(TargetDir)Settings.ini&quot;&#xD;&#xA;) else (&#xD;&#xA;    copy &quot;$(ProjectDir)Settings.ini&quot; &quot;$(TargetDir)Settings.ini&quot;&#xD;&#xA;    copy &quot;$(ProjectDir)..\LICENSE.txt&quot; &quot;$(TargetDir)LICENSE.txt&quot;&#xD;&#xA;    copy &quot;$(ProjectDir)..\README.txt&quot; &quot;$(TargetDir)README.txt&quot;&#xD;&#xA;    del &quot;$(TargetDir)*.pdb&quot;&#xD;&#xA;)&#xD;&#xA;copy &quot;$(ProjectDir)Status.ini&quot; &quot;$(TargetDir)Status.ini&quot;" />
+  </Target>
+
+</Project>

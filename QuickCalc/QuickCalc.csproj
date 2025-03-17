@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="YaccLexTools" Version="1.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuLib\QuLib.csproj" />
+  </ItemGroup>
+  <ItemGroup Label="Parser-ParserFiles">
+    <YaccFile Include="Parser\Parser.Language.grammar.y">
+      <OutputFile>Parser\Parser.Parser.Generated.cs</OutputFile>
+      <Arguments>/gplex /nolines</Arguments>
+    </YaccFile>
+    <None Include="Parser\Parser.Parser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parser.Language.grammar.y</DependentUpon>
+    </None>
+    <LexFile Include="Parser\Parser.Language.analyzer.lex">
+      <OutputFile>Parser\Parser.Scanner.Generated.cs</OutputFile>
+    </LexFile>
+    <None Include="Parser\Parser.Scanner.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parser.Language.analyzer.lex</DependentUpon>
+    </None>
+  </ItemGroup>
+</Project>

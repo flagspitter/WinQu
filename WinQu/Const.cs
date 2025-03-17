@@ -1,0 +1,44 @@
+using System;
+
+namespace WinQu
+{
+	public static class Const
+	{
+		////////////////////////////////////////////////////////////////
+		#region 各種ファイル名
+		////////////////////////////////////////////////////////////////
+		
+		public static string BasePath {
+			get {
+				return Application.CommonAppDataPath + "\\..";
+			}
+		}
+		
+		public static string AplicationPath {
+			get {
+				return
+					System.IO.Path.GetDirectoryName(
+						System.Reflection.Assembly.GetExecutingAssembly().Location
+					) ?? "";
+			}
+		}
+		
+		#endregion
+		
+		////////////////////////////////////////////////////////////////
+		#region 表記関係
+		////////////////////////////////////////////////////////////////
+		
+		#endregion
+		
+		////////////////////////////////////////////////////////////////
+		#region 定数
+		////////////////////////////////////////////////////////////////
+		
+		// ログの保持ファイル数
+		// 最小1、設計上は最大1000
+		public const int MaxAppLog = 10;
+		
+		#endregion
+	}
+}

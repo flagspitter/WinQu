@@ -1,0 +1,153 @@
+QuickWatch\QuickWatch.cs(12) : 		public QuickWatch()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatch.cs(51) : 		public void Start()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatch.cs(58) : 		public void Stop()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatch.cs(65) : 		public void Reset()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatch.cs(79) : 		public void SetLap()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatch.cs(92) : 		public void ResetLap()  /// namespace QuickWatch, class QuickWatch
+QuickWatch\QuickWatchController.cs(24) : 		public QuickWatchController()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(42) : 		public void Initialize( IQuHost h )  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(48) : 			Hotkeys = new() {  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(73) : 		public void Deinitialize()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(80) : 		public void Activate()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(88) : 		public void Deactivate()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(95) : 		public void AppsActivated()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(100) : 		public void AppsDeactivated()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(134) : 		private void Toggle()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(165) : 		private void SetLap()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(171) : 		private void ShowLaps()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(177) : 		private void Start()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(184) : 		private void Stop()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(191) : 		private void Reset()  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchController.cs(203) : 		private void Update( TimeSpan t )  /// namespace QuickWatch, class QuickWatchController
+QuickWatch\QuickWatchForm.cs(20) : 		public QuickWatchForm( QuickWatchController c )  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(27) : 		private void SwForm_Load(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(73) : 		private void btnStartStop_Click(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(78) : 		private void btnLap_Click(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(83) : 		private void btnReset_Click(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(88) : 		private void btnLapView_Click(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(92) : 		private void lbCounter_DoubleClick(object sender, EventArgs e)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(102) : 		public void UpdateWatch( TimeSpan elapsed )  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(107) : 		public void Start()  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.cs(111) : 		public void Stop()  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.Designer.cs(14) : 		protected override void Dispose(bool disposing)  /// namespace QuickWatch, class QuickWatchForm
+QuickWatch\QuickWatchForm.Designer.cs(29) : 		private void InitializeComponent()  /// namespace QuickWatch, class QuickWatchForm
+QuLib\Example_Module.cs(28) : 		public void Initialize( IQuHost h )  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(34) : 			Hotkeys = new() {  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(54) : 		public void Deinitialize()  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(61) : 		public void Activate()  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(68) : 		public void Deactivate()  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(74) : 		public void AppsActivated()  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(79) : 		public void AppsDeactivated()  /// namespace Hoge, class Hoge
+QuLib\Example_Module.cs(97) : 		private void Sample()  /// namespace Hoge, class Hoge
+QuLib\IQuModule.cs(64) : 		void BringToFront()  /// namespace QuLib
+QuLib\IQuModule.cs(72) : 		void SendToBack()  /// namespace QuLib
+QuLib\misc.cs(55) : 		public static void Invoke(this Control c, Action act)  /// namespace QuLib, class ExtendedMethods
+QuLib\misc.cs(97) : 		public static void ShowConsole()  /// namespace QuLib, class Misc
+QuLib\misc.cs(112) : 				new StreamWriter( Console.OpenStandardOutput(), System.Text.Encoding.GetEncoding("shift_jis") ) {  /// namespace QuLib, class Misc
+QuLib\misc.cs(119) : 		public static void HideConsole()  /// namespace QuLib, class Misc
+QuLib\misc.cs(165) : 			get {  /// namespace QuLib, class Inifile, Exists
+QuLib\misc.cs(176) : 		public Inifile( string fn )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(182) : 		public Inifile() : this( "" ) // : this( ... ) で、自身のオーバーロードを呼び出せる  /// namespace QuLib, class Inifile
+QuLib\misc.cs(192) : 		public void Write( string category, string key, object val )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(202) : 		public string Read( string category, string key, string def )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(223) : 		public void Init( string category, string key, string def )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(229) : 		public IEnumerable<string> ReadMulti( string category, string key, string def, char sepa )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(240) : 		public void Exec( string category, string key, string def, char sepa, Action<string> act )  /// namespace QuLib, class Inifile
+QuLib\misc.cs(279) : 		public static Keys Str2Keys(string str)  /// namespace QuLib, class KeyCode
+QuLib\misc.cs(492) : 		public static int Str2ModKey(string str)  /// namespace QuLib, class KeyCode
+WinQu\Const.cs(12) : 			get {  /// namespace WinQu, class Const, BasePath
+WinQu\Const.cs(18) : 			get {  /// namespace WinQu, class Const, AplicationPath
+WinQu\FormForceResizer.cs(28) : 		public FormForceResizer( Form t ) : this( t, 0, 0 ) {}  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(29) : 		public FormForceResizer( Form t, int minW, int minH )  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(42) : 		private void SetMouseEvent( System.Windows.Forms.Control.ControlCollection c )  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(90) : 		private void Callback_MouseDown(object? sender, MouseEventArgs e)  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(107) : 		private void Callback_MouseMove(object? sender, MouseEventArgs e)  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(130) : 		private void SetNextSize( MouseEventArgs e )  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(216) : 		private void SetResizingCursor()  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(259) : 			bool IsResizingTarget( ResizePosition p )  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(265) : 		private bool IsExcluded()  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(276) : 		private void Disable()  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(286) : 		private void Enable()  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(299) : 		void Dispose(bool disposing)  /// namespace WinQu, class FormForceResizer
+WinQu\FormForceResizer.cs(323) : 		public void Dispose()  /// namespace WinQu, class FormForceResizer
+WinQu\HotkeyListener.cs(62) : 		private class RegList(Action<int, Keys> a, int i, int m, Keys k)  /// namespace WinQu, class HotkeyListener, class RegList
+WinQu\HotkeyListener.cs(85) : 		public void Register(string key, Action<int, Keys> cf)  /// namespace WinQu, class HotkeyListener
+WinQu\HotkeyListener.cs(110) : 		public int Register( int modKey, Keys key, Action<int, Keys> act )  /// namespace WinQu, class HotkeyListener
+WinQu\HotkeyListener.cs(122) : 		public void UnregisterAll()  /// namespace WinQu, class HotkeyListener
+WinQu\HotkeyListener.cs(136) : 		protected override void WndProc( ref Message m )  /// namespace WinQu, class HotkeyListener
+WinQu\HotkeyListener.cs(154) : 		public HotkeyListener()  /// namespace WinQu, class HotkeyListener
+WinQu\misc.cs(55) : 		public static void Invoke(this Control c, Action act)  /// namespace WinQu, class ExtendedMethods
+WinQu\misc.cs(97) : 		public static void ShowConsole()  /// namespace WinQu, class Misc
+WinQu\misc.cs(112) : 				new StreamWriter( Console.OpenStandardOutput(), System.Text.Encoding.GetEncoding("shift_jis") ) {  /// namespace WinQu, class Misc
+WinQu\misc.cs(119) : 		public static void HideConsole()  /// namespace WinQu, class Misc
+WinQu\misc.cs(165) : 			get {  /// namespace WinQu, class Inifile, Exists
+WinQu\misc.cs(176) : 		public Inifile( string fn )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(182) : 		public Inifile() : this( "" ) // : this( ... ) で、自身のオーバーロードを呼び出せる  /// namespace WinQu, class Inifile
+WinQu\misc.cs(192) : 		public void Write( string category, string key, object val )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(202) : 		public string Read( string category, string key, string def )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(223) : 		public void Init( string category, string key, string def )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(229) : 		public IEnumerable<string> ReadMulti( string category, string key, string def, char sepa )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(240) : 		public void Exec( string category, string key, string def, char sepa, Action<string> act )  /// namespace WinQu, class Inifile
+WinQu\misc.cs(279) : 		public static Keys Str2Keys(string str)  /// namespace WinQu, class KeyCode
+WinQu\misc.cs(492) : 		public static int Str2ModKey(string str)  /// namespace WinQu, class KeyCode
+WinQu\Program.cs(9) :         static void Main()  /// namespace WinQu, class Program
+WinQu\QuHost.cs(7) : 	public class QuHost(IWindowController w, HotkeyListener hk, Inifile status, Inifile setting) : IHostController  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(22) : 			get  /// namespace WinQu, class QuHost, ModulesEnum
+WinQu\QuHost.cs(31) : 		public void Deinitialize()  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(41) : 		public void NotifyAppsActivate()  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(49) : 		public void ActionToModules( Action<IQuModule> act )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(77) : 		public void RegisterModule( IQuModule m )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(102) : 			get  /// namespace WinQu, class QuHost, Version
+WinQu\QuHost.cs(109) : 		public string LoadModuleSetting( string module, string key, string def )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(114) : 		public void   SaveModuleSetting( string module, string key, string val )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(119) : 		public string LoadModuleStatus( string module, string key, string def )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(124) : 		public void   SaveModuleStatus( string module, string key, string val )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(129) : 		public void RequestActivate( string module )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(135) : 		public void RequestDeactivate( string module )  /// namespace WinQu, class QuHost
+WinQu\QuHost.cs(158) : 		public void Log( string module, LogLevel ll, string message )  /// namespace WinQu, class QuHost
+WinQu\QuHostWrapper.cs(30) : 		public QuHostWrapper( IHostController h, IQuModule m )  /// namespace WinQu, class QuHostWrapper
+WinQu\WinQu.cs(52) : 		public WinQu()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(89) : 		private void MainWindow_Load(object sender, EventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(107) : 		private void MainWindow_Shown(object sender, EventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(113) : 		private void LoadModules()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(128) : 		private void LoadModule( string file )  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(156) : 		private void LoadSettings()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(170) : 		private void SetupTaskTrayMenu()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(197) : 		private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(203) : 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(223) : 		private void MainWindow_Activated(object sender, EventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(229) : 		private void MainWindow_Deactivate(object sender, EventArgs e)  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(235) : 		public new void Show()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(247) : 			get  /// namespace WinQu, class WinQu, CreateParams
+WinQu\WinQu.cs(265) : 		private void Wake( IQuModule c )  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(288) : 		private void Rest( IQuModule c )  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(294) : 		private void ResizeVertical()  /// namespace WinQu, class WinQu
+WinQu\WinQu.cs(311) : 		private void Exit()  /// namespace WinQu, class WinQu
+WinQu\WinQu.Designer.cs(14) : 		protected override void Dispose(bool disposing)  /// namespace WinQu, class WinQu
+WinQu\WinQu.Designer.cs(29) : 		private void InitializeComponent()  /// namespace WinQu, class WinQu
+WinQu\Logger\Logger.cs(67) : 		public void Write( string s, int stackCnt = 0 )  /// namespace YacsLibrary, class LogLevel
+WinQu\Logger\Logger.cs(89) : 		public void Separate()  /// namespace YacsLibrary, class LogLevel
+WinQu\Logger\Logger.cs(101) : 		public LogLevel(  /// namespace YacsLibrary, class LogLevel
+WinQu\Logger\Logger.cs(156) : 		public static void WriteLine( string s )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(161) : 		public static void Write( string s )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(166) : 		public static void Separate()  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(178) : 		public static LogLevel Register( bool f, bool c, ConsoleColor fc, ConsoleColor bc, bool t, string caption )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(203) : 		private static bool IsContinuousLine( string s )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(214) : 		private static void WriteLog( ConsoleColor fc, ConsoleColor bc, string d, string fl, string c, string s, bool ce, bool fe )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(284) : 		public static void Cleanup( int days )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(305) : 		public static void Begin( string file )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(311) : 		public static void BeginConsole( bool show = true )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(323) : 		public static void BeginFile( string file )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(340) : 		public static void ShowUI()  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(365) : 		public static void ShowConsole()  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(372) : 		public static void HideConsole()  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(395) : 		public static void MoveConsole( int x, int y, int w, int h )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\Logger.cs(400) : 		public static void SetConsoleSize( int w, int h )  /// namespace YacsLibrary, class SosLogger
+WinQu\Logger\LogUI.cs(10) : 		public LogUI()  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(24) : 		public void Add( LogLevel l, string name )  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(28) : 			var caption    = new Label()    { AutoSize=false, Tag=l, Text=name };  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(29) : 			var chkConsole = new CheckBox() { AutoSize=true,  Tag=l, Text="Console  ", Checked=l.ConsoleEnabled };  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(30) : 			var chkFile    = new CheckBox() { AutoSize=true,  Tag=l, Text="File",      Checked=l.FileEnabled };  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(68) : 		private static void EnterItems( Label l, CheckBox c, CheckBox f )  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(75) : 		private static void LeaveItems( Label l, CheckBox c, CheckBox f )  /// namespace YacsLibrary, class LogUI
+WinQu\Logger\LogUI.cs(82) : 		public void BringToForward()  /// namespace YacsLibrary, class LogUI
