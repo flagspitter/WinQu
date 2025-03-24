@@ -274,7 +274,21 @@ namespace WinQu
 		}
 		
 		public void Log( string module, string message, int depth = 0 ) => Log( module, LogLevel.Debug, message, depth );
-		
+
+		public void ShowOSD( string message, int time, Font? txtFont, Color txtColor, Color backColor, Action? finished )
+		{
+			var o = new OSD( message );
+			o.DisplayTime = time;
+			if( txtFont != null )
+			{
+				o.OsdFont = txtFont;
+			}
+			o.OsdForeColor = txtColor;
+			o.BackColor = backColor;
+			o.Closed += (_, _) => finished?.Invoke();
+			o.ShowOSD();
+		}
+
 		public int Opac  => 0;
 		public System.Drawing.Font Font => System.Drawing.SystemFonts.DefaultFont;
 		

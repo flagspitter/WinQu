@@ -83,7 +83,11 @@ namespace WinQu
 		}
 		
 		public void RequestActivateForm() => Host.ActivateForm( Module );
-		
+		public void ShowOSD(string message, int time, Font? txtFont, Color txtColor, Color backColor, Action? finished)
+		{
+			Host.ShowOSD(message, time, txtFont, txtColor, backColor, finished);
+		}
+
 		#endregion
 	}
 }

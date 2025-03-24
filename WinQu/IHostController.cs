@@ -29,7 +29,8 @@ namespace WinQu
 		// ログの記録要求
 		void Log( string module, LogLevel ll, string message, int depth = 0 );
 		void Log( string module, string message, int depth = 0 );
-		
+		void ShowOSD(string message, int time, Font? txtFont, Color txtColor, Color backColor, Action? finished);
+
 		int Opac  { get; } // 透過度
 		System.Drawing.Font Font { get; } // フォント
 		

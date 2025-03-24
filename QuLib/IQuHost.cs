@@ -41,6 +41,7 @@ namespace QuLib
 		
 		// メインウィンドウに対する要求
 		void RequestActivateForm();
+		void ShowOSD( string message, int time, Font? txtFont, Color txtColor, Color backColor, Action? finished );
 	}
 	
 	// ホスト側から基本設定

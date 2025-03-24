@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Specialized;
+using System.Windows.Forms;
 using QuLib;
 
 namespace QuickBoard
@@ -43,6 +44,7 @@ namespace QuickBoard
 				// 操作           メソッド
 				{ Host.LoadModuleSetting("KeySave",    "ctrl+alt+s"), LaunchToSave },
 				{ Host.LoadModuleSetting("KeyRestore", "ctrl+alt+r"), LaunchToRestore },
+				{ Host.LoadModuleSetting("KeyPlain",   "ctrl+alt+p"), Plainize },
 			};
 			
 			// 設定読み込み
@@ -132,6 +134,29 @@ namespace QuickBoard
 			BoardForm.TitleColor = Color.Pink;
 			CurrentOperation = Operation.Restore;
 			Launch();
+		}
+
+		private void Plainize()
+		{
+			if( Clipboard.ContainsText() )
+			{
+				var c = new ClipTextData();
+				if( c != null )
+				{
+					c.GetFromClipboard();
+					c.RestoreClipboard();
+
+					var df = Control.DefaultFont;
+					var f = new Font(df.FontFamily, 14, df.Style);
+					Host.ShowOSD($"Clipboard\nPlainized", 300, f, Color.LightGreen, Color.Black, () => f.Dispose());
+				}
+			}
+			else
+			{
+				var df = Control.DefaultFont;
+				var f = new Font(df.FontFamily, 14, df.Style);
+				Host.ShowOSD($"Not Text Data", 300, f, Color.Pink, Color.Black, () => f.Dispose());
+			}
 		}
 
 		private void Launch()
@@ -235,6 +260,10 @@ namespace QuickBoard
 
 				ClipBank[ key ] = data;
 				BoardForm.Add( key, data.Type, data.Summary );
+
+				var df = Control.DefaultFont;
+				var f = new Font( df.FontFamily, 16, df.Style );
+				Host.ShowOSD( $"Saved to [{key}]", 300, f, Color.Cyan, Color.Black, () => f.Dispose() );
 			}
 			else
 			{
@@ -255,6 +284,10 @@ namespace QuickBoard
 				{
 					Host.LogN( $"Restore Clipboard key [{key}]" );
 					data.RestoreClipboard();
+
+					var df = Control.DefaultFont;
+					var f = new Font(df.FontFamily, 16, df.Style);
+					Host.ShowOSD($"Restored from [{key}]", 300, f, Color.Pink, Color.Black, () => f.Dispose());
 				}
 			}
 			else
@@ -307,37 +340,6 @@ namespace QuickBoard
 		private void ApplyToClipboard( IDataObject obj )
 		{
 			Clipboard.SetDataObject(obj);
-		}
-
-		#endregion
-		
-		#region サポートメソッド
-		
-		private DataObject? CloneDataObject(DataObject? d)
-		{
-			ArgumentNullException.ThrowIfNull(d);
-
-			return new DataObject(d);
-		}
-
-		private void test()
-		{
-			if( Clipboard.ContainsText() )
-			{
-
-			}
-			else if (Clipboard.ContainsImage())
-			{
-
-			}
-			else if (Clipboard.ContainsFileDropList())
-			{
-
-			}
-			else
-			{
-
-			}
 		}
 
 		#endregion
