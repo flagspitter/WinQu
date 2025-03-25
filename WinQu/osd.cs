@@ -54,6 +54,7 @@ namespace WinQu
 			using( var brush = new SolidBrush(OsdForeColor) )
 			{
 				SizeF textSize = g.MeasureString(DisplayText, OsdFont);
+				this.Size = new Size( (int)textSize.Width + 8, (int)textSize.Height + 8 );
 				float x = (this.ClientSize.Width - textSize.Width) / 2;
 				float y = (this.ClientSize.Height - textSize.Height) / 2;
 				g.DrawString(DisplayText, OsdFont, brush, x, y);
