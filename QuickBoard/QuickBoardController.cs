@@ -2,6 +2,7 @@ using System;
 using System.Collections.Specialized;
 using System.Windows.Forms;
 using QuLib;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace QuickBoard
 {
@@ -15,6 +16,16 @@ namespace QuickBoard
 		private readonly QuickBoardForm BoardForm = new();
 		
 		private readonly Dictionary<string, IClipData> ClipBank = [];
+		private readonly Stack<IClipData> ClipStack = [];
+
+		private int OsdTime = 300;
+		private int OsdSize = 16;
+		private Color OsdSaveBackColor    = Color.LightGreen;
+		private Color OsdRestoreBackColor = Color.LightYellow;
+		private Color OsdErrorBackColor   = Color.Pink;
+		private Color OsdSaveForeColor    = Color.Black;
+		private Color OsdRestoreForeColor = Color.Black;
+		private Color OsdErrorForeColor   = Color.Black;
 
 		#endregion
 
@@ -45,14 +56,25 @@ namespace QuickBoard
 				{ Host.LoadModuleSetting("KeySave",    "ctrl+alt+s"), LaunchToSave },
 				{ Host.LoadModuleSetting("KeyRestore", "ctrl+alt+r"), LaunchToRestore },
 				{ Host.LoadModuleSetting("KeyPlain",   "ctrl+alt+p"), Plainize },
+				{ Host.LoadModuleSetting("KeyPush",    "ctrl+alt+space"), Push },
+				{ Host.LoadModuleSetting("KeyPop",     "ctrl+alt+shift+space"), Pop },
 			};
-			
-			// 設定読み込み
 
-			// TODO
-			// 配下のコントロールで、
-			// マウスポイントしたときにマウスカーソルを変化させたくないものの一覧
-			CursorFixer = new Control[] {
+			OsdTime = Host.LoadModuleSetting("OsdTime", "300").ToInt();
+			OsdSize = Host.LoadModuleSetting("OsdSize", "16").ToInt();
+			OsdSaveBackColor    = Host.LoadColorSetting( "OsdSaveBackColor",         "LightGreen" );
+			OsdRestoreBackColor = Host.LoadColorSetting( "OsdRestoreBackColorColor", "LightYellow" );
+			OsdErrorBackColor   = Host.LoadColorSetting( "OsdErrorBackColor",        "Pink" );
+			OsdSaveForeColor    = Host.LoadColorSetting( "OsdSaveForeColor",         "Black" );
+			OsdRestoreForeColor = Host.LoadColorSetting( "OsdRestoreForeColorColor", "Black" );
+			OsdErrorForeColor   = Host.LoadColorSetting( "OsdErrorForeColor",        "Black" );
+
+		// 設定読み込み
+
+		// TODO
+		// 配下のコントロールで、
+		// マウスポイントしたときにマウスカーソルを変化させたくないものの一覧
+		CursorFixer = new Control[] {
 			};
 
 			// TODO
@@ -138,24 +160,32 @@ namespace QuickBoard
 
 		private void Plainize()
 		{
-			if( Clipboard.ContainsText() )
+			try
 			{
-				var c = new ClipTextData();
-				if( c != null )
+				if( Clipboard.ContainsText() )
 				{
-					c.GetFromClipboard();
-					c.RestoreClipboard();
+					var c = new ClipTextData();
+					if( c != null )
+					{
+						c.GetFromClipboard();
+						c.RestoreClipboard();
 
+						var df = Control.DefaultFont;
+						var f = new Font(df.FontFamily, 14, df.Style);
+						ShowOsd( $"Clipboard\nPlainized", OsdSaveForeColor, OsdSaveBackColor );
+					}
+				}
+				else
+				{
 					var df = Control.DefaultFont;
 					var f = new Font(df.FontFamily, 14, df.Style);
-					Host.ShowOSD($"Clipboard\nPlainized", 300, f, Color.LightGreen, Color.Black, () => f.Dispose());
+					ShowOsd( $"Not Text Data", OsdErrorForeColor, OsdErrorBackColor );
 				}
 			}
-			else
+			catch( Exception e )
 			{
-				var df = Control.DefaultFont;
-				var f = new Font(df.FontFamily, 14, df.Style);
-				Host.ShowOSD($"Not Text Data", 300, f, Color.Pink, Color.Black, () => f.Dispose());
+				Host.LogE( e.Message );
+				ShowOsd( "Clipboard error", OsdErrorForeColor, OsdErrorBackColor );
 			}
 		}
 
@@ -252,49 +282,111 @@ namespace QuickBoard
 
 		private void Save( string key )
 		{
-			var data = GetClipboard();
-			
-			if( data != null )
+			try
 			{
-				Host.LogN( $"Saved from clipboard to [{key}] : {data.Type} {data.Summary}" );
+				var data = GetClipboard();
+				
+				if( data != null )
+				{
+					Host.LogN( $"Saved from clipboard to [{key}] : {data.Type} {data.Summary}" );
 
-				ClipBank[ key ] = data;
-				BoardForm.Add( key, data.Type, data.Summary );
+					ClipBank[ key ] = data;
+					BoardForm.Add( key, data.Type, data.Summary );
 
-				var df = Control.DefaultFont;
-				var f = new Font( df.FontFamily, 16, df.Style );
-				Host.ShowOSD( $"Saved to [{key}]", 300, f, Color.Cyan, Color.Black, () => f.Dispose() );
+					var df = Control.DefaultFont;
+					var f = new Font( df.FontFamily, 16, df.Style );
+					ShowOsd( $"Saved to [{key}]", OsdSaveForeColor, OsdSaveBackColor );
+				}
+				else
+				{
+					Host.LogW( "No Clipboard data" );
+					ShowOsd( $"Clipboard is empty or\nnot supported format", OsdErrorForeColor, OsdErrorBackColor );
+				}
 			}
-			else
+			catch( Exception e )
 			{
-				Host.LogW( "No Clipboard data" );
+				Host.LogE( e.Message );
+				ShowOsd( "Clipboard error", OsdErrorForeColor, OsdErrorBackColor );
 			}
 		}
 		
 		private void Restore( string key )
 		{
-			if( ClipBank.ContainsKey( key ) )
+			try
 			{
-				var data = ClipBank[ key ];
-				if( data == null )
+				if( ClipBank.ContainsKey( key ) )
 				{
-					Host.LogF( $"[{key}] is broken" );
+					var data = ClipBank[ key ];
+					if( data == null )
+					{
+						Host.LogF( $"[{key}] is broken" );
+					}
+					else
+					{
+						Host.LogN( $"Restore Clipboard key [{key}]" );
+						data.RestoreClipboard();
+
+						var df = Control.DefaultFont;
+						var f = new Font(df.FontFamily, 16, df.Style);
+						ShowOsd( $"Restored from [{key}]", OsdRestoreForeColor, OsdRestoreBackColor );
+					}
 				}
 				else
 				{
-					Host.LogN( $"Restore Clipboard key [{key}]" );
-					data.RestoreClipboard();
-
-					var df = Control.DefaultFont;
-					var f = new Font(df.FontFamily, 16, df.Style);
-					Host.ShowOSD($"Restored from [{key}]", 300, f, Color.Pink, Color.Black, () => f.Dispose());
+					Host.LogE( $"not found [{key}]" );
 				}
 			}
-			else
+			catch( Exception e )
 			{
-				Host.LogE( $"not found [{key}]" );
+				Host.LogE( e.Message );
+				ShowOsd( "Clipboard error", OsdErrorForeColor, OsdErrorBackColor );
 			}
 		}
+
+		private void Push()
+		{
+			try
+			{
+				var data = GetClipboard();
+
+				if (data != null)
+				{
+					Host.LogN($"Push clipboard : {data.Type} {data.Summary}");
+					ClipStack.Push(data);
+					ShowOsd( $"Push Clipboard ({ClipStack.Count} items)", OsdSaveForeColor, OsdSaveBackColor );
+				}
+			}
+			catch( Exception e )
+			{
+				Host.LogE( e.Message );
+				ShowOsd( "Clipboard error", OsdErrorForeColor, OsdErrorBackColor );
+			}
+		}
+
+		private void Pop()
+		{
+			try
+			{
+				if( ClipStack.Count > 0 )
+				{
+					var data = ClipStack.Pop();
+					data.RestoreClipboard();
+					ShowOsd( $"Pop Clipboard ({ClipStack.Count} items)", OsdRestoreForeColor, OsdRestoreBackColor );
+				}
+				else
+				{
+					var df = Control.DefaultFont;
+					var f = new Font(df.FontFamily, 16, df.Style);
+					ShowOsd( $"Clipboard statck is empty", OsdErrorForeColor, OsdErrorBackColor );
+				}
+			}
+			catch( Exception e )
+			{
+				Host.LogE( e.Message );
+				ShowOsd( "Clipboard error", OsdErrorForeColor, OsdErrorBackColor );
+			}
+		}
+
 
 		private void Remove( string key )
 		{
@@ -302,6 +394,13 @@ namespace QuickBoard
 			ClipBank.Remove( key );
 			BoardForm.Remove( key );
 			Host.SaveModuleStatus(key, "");
+		}
+		
+		private void ShowOsd( string msg, Color fc, Color bc )
+		{
+			var df = Control.DefaultFont;
+			var f = new Font(df.FontFamily, OsdSize, df.Style);
+			Host.ShowOSD( msg, OsdTime, f, fc, bc, () => f.Dispose() );
 		}
 
 		#endregion

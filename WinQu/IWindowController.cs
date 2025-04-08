@@ -11,5 +11,9 @@ namespace WinQu
 		void Show();
 		void Hide();
 		void Activate();
+
+		object Invoke(Delegate method);
+		object Invoke(Delegate method, params object[] args);
+
 	}
 }

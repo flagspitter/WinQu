@@ -21,7 +21,7 @@ namespace WinQu
 			this.FormBorderStyle = FormBorderStyle.None;
 			this.StartPosition = FormStartPosition.CenterScreen;
 			this.BackColor = Color.Black;
-			this.Opacity = 0.5; // 半透明
+			this.Opacity = 0.8; // 半透明
 			this.Size = new Size( 200, 50 );
 			this.TopMost = true; // 最前面に表示
 			this.ShowInTaskbar = false; // タスクバーに表示しない
