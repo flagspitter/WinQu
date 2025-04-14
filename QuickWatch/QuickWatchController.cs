@@ -54,7 +54,7 @@ namespace QuickWatch
 				// 操作           メソッド
 				{ Host.LoadModuleSetting("KeyToggle",    "ctrl+alt+q"), Toggle },
 				{ Host.LoadModuleSetting("KeyLap",       "ctrl+alt+w"), SetLap },
-				{ Host.LoadModuleSetting("KeyShowLap",   "ctrl+alt+l"), ShowLaps },
+				{ Host.LoadModuleSetting("KeyShowLap",   "ctrl+alt+shift+w"), ShowLaps },
 				{ Host.LoadModuleSetting("KeyStartStop", "ctrl+alt+a"), StartStop },
 				{ Host.LoadModuleSetting("KeyReset",     "ctrl+alt+e"), Reset },
 			};

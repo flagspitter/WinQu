@@ -18,7 +18,7 @@ namespace QuLib
 		void Deactivate();                // ホスト側からモジュールを終了するときに実行
 		void AppsActivated();             // アプリ自体がアクティブになるときに実行
 		void AppsDeactivated();           // アプリ自体が非アクティブになるときに実行
-		
+
 		// UserControlとの接続
 		// モジュールがGUIである場合、UserControlを非nullにして返す
 		System.Windows.Forms.UserControl? MainContainer { get; }

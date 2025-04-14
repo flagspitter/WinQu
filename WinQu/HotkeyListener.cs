@@ -82,8 +82,10 @@ namespace WinQu
 		#region 公開メソッド
 		////////////////////////////////////////////////////////////////
 		
-		public void Register(string key, Action<int, Keys> cf)
+		public int Register(string key, Action<int, Keys> cf)
 		{
+			int ret = -1;
+
 			if (key != "")
 			{
 				string[] keylist = key.Split('+');
@@ -102,9 +104,11 @@ namespace WinQu
 
 				if (normalKey != null)
 				{
-					Register(modKey, normalKey.Value, cf);
+					ret = Register(modKey, normalKey.Value, cf);
 				}
 			}
+
+			return ret;
 		}
 
 		public int Register( int modKey, Keys key, Action<int, Keys> act )
@@ -120,10 +124,22 @@ namespace WinQu
 			}
 			else
 			{
+				curId = -1;
 				Log.E($"Failed to register hot key {modKey} {key}");
 			}
 
 			return curId;
+		}
+		
+		public void Unregister( int id )
+		{
+			foreach( var tg in Callbacks )
+			{
+				if( tg.id == id )
+				{
+					UnregisterHotKey( this.Handle, tg.id );
+				}
+			}
 		}
 		
 		public void UnregisterAll()

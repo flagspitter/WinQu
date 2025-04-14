@@ -49,7 +49,12 @@ namespace WinQu
 		public void   RequestActivate()                           => Host.RequestActivate( Module );
 		public void   RequestDeactivate()                         => Host.RequestDeactivate( Module );
 		public void   Log( LogLevel ll, string message, int depth ) => Host.Log( Module.Name, ll, message, depth );
-		
+
+		// ホットキーの個別操作
+		public List<string> HotkeyKeys => Host.HotkeyKeys;
+		public void RegisterHotkey(string key, Action action) => Host.RegisterHotkey(key, action);
+		public void UnregisterHotkey(string key) => Host.UnregisterHotkey(key);
+
 		public int Opac     => Host.Opac;
 		public Font Font    => Host.Font;
 		public int Width    => Host.Width;

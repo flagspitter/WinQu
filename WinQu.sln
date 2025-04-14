@@ -33,6 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickNote", "QuickNote\Quic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickBoard", "QuickBoard\QuickBoard.csproj", "{CE43B02B-1951-494E-9F91-4A3F29147801}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLauncher", "QuickLauncher\QuickLauncher.csproj", "{1DFB14AC-1122-4687-9E77-5ECF3EEEACB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F5A121A5-A8B4-4380-9D73-63AE0D1DDC76} = {F5A121A5-A8B4-4380-9D73-63AE0D1DDC76}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +72,10 @@ Global
 		{CE43B02B-1951-494E-9F91-4A3F29147801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE43B02B-1951-494E-9F91-4A3F29147801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE43B02B-1951-494E-9F91-4A3F29147801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFB14AC-1122-4687-9E77-5ECF3EEEACB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFB14AC-1122-4687-9E77-5ECF3EEEACB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFB14AC-1122-4687-9E77-5ECF3EEEACB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFB14AC-1122-4687-9E77-5ECF3EEEACB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

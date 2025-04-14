@@ -13,11 +13,12 @@ namespace WinQu
 		private Inifile StatusFile = status;
 		private Inifile SettingFile = setting;
 		private HotkeyListener Hotkey = hk;
+		private Dictionary<int,string> HotkeyList = new();
 
 		#endregion
-		
+
 		#region ウィンドウからの操作
-		
+
 		public IEnumerable<IQuModule> ModulesEnum
 		{
 			get
@@ -32,6 +33,7 @@ namespace WinQu
 		public void Deinitialize()
 		{
 			Hotkey.UnregisterAll();
+			HotkeyList.Clear();
 
 			foreach ( var m in Modules )
 			{
@@ -85,11 +87,16 @@ namespace WinQu
 			foreach ( var hk in m.Hotkeys )
 			{
 				Log( LogLevel.Debug, $"Register Hotkey {hk.Key} in {m.Name}" );
-				Hotkey.Register( hk.Key, (m,k) =>
+				int id = Hotkey.Register( hk.Key, (m,k) =>
 				{
 					Log(LogLevel.Debug, $"Occurred hot key {m} {k}");
 					hk.Value();
 				} );
+
+				if( id >= 0 )
+				{
+					HotkeyList.Add(id, hk.Key);
+				}
 			}
 		}
 
@@ -294,7 +301,54 @@ namespace WinQu
 
 		public int Opac  => 0;
 		public System.Drawing.Font Font => System.Drawing.SystemFonts.DefaultFont;
-		
+
+		public List<string> HotkeyKeys
+		{
+			get
+			{
+				var ret = new List<string>();
+				foreach( var hk in HotkeyList)
+				{
+					ret.Add(hk.Value);
+				}	
+				return ret;
+			}
+		}
+
+		public void RegisterHotkey(string key, Action action)
+		{
+			Log(LogLevel.Debug, $"Register Hotkey {key}");
+			int id = Hotkey.Register(key, (m, k) =>
+			{
+				Log(LogLevel.Debug, $"Occurred hot key {m} {k}");
+				action();
+			});
+
+			if (id >= 0)
+			{
+				HotkeyList.Add(id, key);
+			}
+			else
+			{
+				Log(LogLevel.Error, $"Failed to register hotkey {key}");
+			}
+		}
+
+		public void UnregisterHotkey(string key)
+		{
+			Log(LogLevel.Debug, $"Unregister Hotkey {key}");
+
+			foreach( var hk in HotkeyList)
+			{
+				if (hk.Value == key)
+				{
+					Hotkey.Unregister(hk.Key);
+					HotkeyList.Remove(hk.Key);
+					break;
+				}
+			}
+		}
+
 		public int Width  => Win.Width;
 		public int Height => Win.Height;
 		public int X      => Win.Left;

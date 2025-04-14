@@ -31,6 +31,12 @@ namespace WinQu
 		void Log( string module, string message, int depth = 0 );
 		void ShowOSD(string message, int time, Font? txtFont, Color txtColor, Color backColor, Action? finished);
 
+		// ホットキー個別操作
+		List<string> HotkeyKeys { get; } // ホットキーの一覧を取得
+		void RegisterHotkey(string key, Action action); // ホットキーの登録	
+		void UnregisterHotkey(string key); // ホットキーの解除
+
+
 		int Opac  { get; } // 透過度
 		System.Drawing.Font Font { get; } // フォント
 		

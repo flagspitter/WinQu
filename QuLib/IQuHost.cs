@@ -14,7 +14,12 @@ namespace QuLib
 		Color  LoadColorSetting( string key, string val );
 		Font   LoadFontSetting( string key, string defName, int defSize );
 		List<string> GetAllSettingKeys();
-		
+
+		// ホットキー個別操作
+		List<string> HotkeyKeys { get; } // ホットキーの一覧を取得
+		void RegisterHotkey(string key, Action action); // ホットキーの登録	
+		void UnregisterHotkey(string key); // ホットキーの解除
+
 		// モジュール個別で定義した状態を取得・保存
 		string LoadModuleStatus( string key, string def );
 		void   SaveModuleStatus( string key, string val );
